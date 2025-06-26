@@ -1,0 +1,35 @@
+<h3>{{ isEdit ? 'Editar Usuário' : 'Novo Usuário' }}</h3>
+
+<div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+<div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input formControlName="username" class="form-control"
+           [class.is-invalid]="form.get('username')?.invalid && form.get('username')?.touched">
+    <div class="invalid-feedback">
+      Username é obrigatório.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input formControlName="email" type="email" class="form-control"
+           [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
+    <div class="invalid-feedback">
+      Informe um email válido.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">URL da Foto</label>
+    <input formControlName="profilePhotoUrl" class="form-control">
+  </div>
+
+  <button class="btn btn-primary" [disabled]="form.invalid || loading">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+    {{ isEdit ? 'Salvar' : 'Criar' }}
+  </button>
+  <button type="button" class="btn btn-secondary ms-2" routerLink="/users" [disabled]="loading">Cancelar</button>
+</form>

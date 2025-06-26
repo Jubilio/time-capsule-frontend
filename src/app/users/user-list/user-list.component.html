@@ -1,0 +1,28 @@
+<div class="toolbar">
+  <button routerLink="/users/new" class="btn btn-primary">Novo Usuário</button>
+</div>
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Foto</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of users">
+      <td>{{ u.username }}</td>
+      <td>{{ u.email }}</td>
+      <td>
+        <img *ngIf="u.profilePhotoUrl" [src]="u.profilePhotoUrl" alt="foto"
+             class="rounded-circle" width="40" height="40">
+      </td>
+      <td>
+        <button class="btn btn-sm btn-warning me-2" (click)="edit(u)">Editar</button>
+        <button class="btn btn-sm btn-danger" (click)="delete(u)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

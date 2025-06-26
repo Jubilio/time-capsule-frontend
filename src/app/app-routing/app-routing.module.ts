@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { UserListComponent } from './users/user-list/user-list.component';
-import { UserFormComponent } from './users/user-form/user-form.component';
-import { CapsuleFormComponent } from './capsules/capsule-form/capsule-form.component';
-import { CapsuleListComponent } from './capsules/capsule-list/capsule-list.component';
+import { UserListComponent } from '../users/user-list/user-list.component';
+import { UserFormComponent } from '../users/user-form/user-form.component';
+import { CapsuleFormComponent } from '../capsules/capsule-form/capsule-form.component';
+import { CapsuleListComponent } from '../capsules/capsule-list/capsule-list.component';
 
-export const routes: Routes = [
+const routes: Routes = [
   { path: 'users', component: UserListComponent },
   { path: 'users/new', component: UserFormComponent },
   { path: 'users/:id/edit', component: UserFormComponent },

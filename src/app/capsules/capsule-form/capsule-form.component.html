@@ -1,0 +1,49 @@
+<h3>{{ isEdit ? 'Editar Cápsula' : 'Nova Cápsula' }}</h3>
+
+<div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+<div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="mb-3">
+    <label class="form-label">ID do Proprietário</label>
+    <input formControlName="ownerId" type="number" class="form-control"
+           [class.is-invalid]="form.get('ownerId')?.invalid && form.get('ownerId')?.touched">
+    <div class="invalid-feedback">Obrigatório.</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Mensagem</label>
+    <textarea formControlName="message" rows="4" class="form-control"
+              [class.is-invalid]="form.get('message')?.invalid && form.get('message')?.touched">
+    </textarea>
+    <div class="invalid-feedback">Mensagem obrigatória.</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Data de Envio</label>
+    <input formControlName="sendDate" type="datetime-local" class="form-control"
+           [class.is-invalid]="form.get('sendDate')?.invalid && form.get('sendDate')?.touched">
+    <div class="invalid-feedback">Data e hora obrigatórias.</div>
+  </div>
+
+  <div formArrayName="recipients" class="mb-3">
+    <label class="form-label">Destinatários</label>
+    <div *ngFor="let ctl of recipients.controls; let i = index" class="input-group mb-2">
+      <input [formControlName]="i" class="form-control"
+             [class.is-invalid]="ctl.invalid && ctl.touched" placeholder="email@exemplo.com">
+      <button type="button" class="btn btn-outline-danger" (click)="removeRecipient(i)" [disabled]="recipients.length===1">
+        &times;
+      </button>
+      <div class="invalid-feedback">Email inválido.</div>
+    </div>
+    <button type="button" class="btn btn-sm btn-link" (click)="addRecipient()">
+      + Adicionar destinatário
+    </button>
+  </div>
+
+  <button class="btn btn-primary" (click)="submit()" [disabled]="form.invalid || loading">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+    {{ isEdit ? 'Salvar' : 'Criar' }}
+  </button>
+  <button class="btn btn-secondary ms-2" routerLink="/capsules" [disabled]="loading">Cancelar</button>
+</form>
