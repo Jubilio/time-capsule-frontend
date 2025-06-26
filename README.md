@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TimeCapsuleFrontend
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
@@ -57,3 +58,7 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# time-capsule-frontend
+Junior com IA frontend...
+>>>>>>> f2fd2a9af7c66a23639d26fe1513c49fb031fd17
